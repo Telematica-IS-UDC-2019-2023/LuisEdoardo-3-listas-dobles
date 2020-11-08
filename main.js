@@ -1,6 +1,5 @@
 import Producto from "./Js/Productos.js"
 import Inventario from "./Js/inventario.js"
-import Interfaz from "./Js/interfaz.js"
 
 const Agregar = document.querySelector("#Agregar");
 const Borrar = document.querySelector("#Borrar");
@@ -11,32 +10,50 @@ const AgregarPrimero = document.querySelector("#AgregarPrimero")
 const EliminarPrimero = document.querySelector("#EliminarPrimero")
 
 
-let producto = document.querySelector("#producto");
-let codigo = document.querySelector("#codigo");
-let descripcion = document.querySelector("#descripcion");
-let cantidad = document.querySelector("#cantidad");
-let costo = document.querySelector("#costo");
-var listaP = document.querySelector("#listaP");
+let nProducto = document.querySelector("#producto");
+let pCodigo = document.querySelector("#codigo");
+let pDescripcion = document.querySelector("#descripcion");
+let pCantidad = document.querySelector("#cantidad");
+let pCosto = document.querySelector("#costo");
 
-
+var inventario = new Inventario;
 
 Agregar.addEventListener('click', () => {
-    let producto = new Producto();
+    let producto = new Producto(pCodigo.value, nProducto.value, pDescripcion.value, Number(pCantidad.value), Number(pCosto.value));
+    inventario.agregarProducto(producto);
+
+    console.log(inventario)
 })
 
 Borrar.addEventListener('click', () => {
-    let producto = new Producto();
+    let codigo = pCodigo.value;
+    inventario.borrarProducto(codigo)
+
+    console.log(inventario)
 })
 
 Buscar.addEventListener('click', () => {
-    let producto = new Producto();
+    let codigo = pCodigo.value;
+    console.log(inventario.buscarProducto(codigo))
 })
 
 AgregarPrimero.addEventListener('click', () => {
-    let producto = new Producto();
+    let producto = new Producto(pCodigo.value, nProducto.value, pDescripcion.value, Number(pCantidad.value), Number(pCosto.value));
+    inventario.agregarPrimero(producto)
+
+    console.log(inventario)
 })
 
 EliminarPrimero.addEventListener('click', () => {
-    let producto = new Producto();
+    inventario.eliminarPrimero()
+
+    console.log(inventario)
 })
 
+ListarP.addEventListener('click', () => {
+    console.log(inventario.listarProductos())
+})
+
+ListarProductosI.addEventListener('click', () => {
+    console.log(inventario.listarProductosInvertidos())
+})
