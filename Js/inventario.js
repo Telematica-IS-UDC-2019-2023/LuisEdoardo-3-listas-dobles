@@ -89,5 +89,24 @@ export default class Inventario {
     }
 }
 
-    agregarPosicion() {}
+    agregarPosicion(nuevo, posicion) {
+        let i = this.inicio;
+        if(posicion === 1){
+            this.agregarPrimero(nuevo);
+        } else{
+            let x = 1;
+            while((x + 1)){
+                if(i.siguiente != null){
+                    i = i.siguiente;
+                    x++;
+                }else{
+                    alert('´Posicion Invalida');
+                }
+            }
+            if((x + 1) === posicion){
+                nuevo.siguiente = i.siguiente;
+                i.siguiente = nuevo;
+            }
+        }
+    }
 }
