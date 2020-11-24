@@ -51,14 +51,18 @@ Borrar.addEventListener('click', () => {
 
 Buscar.addEventListener('click', () => {
     let codigo = pCodigo.value;
-    console.log(inventario.buscarProducto(codigo));
+    //console.log(inventario.buscarProducto(codigo));
     let producto = inventario.buscarProducto(codigo);
-    estado.innerHTML = 'Producto buscado: ' + producto.nombre;
+    if(producto != false){
+        estado.innerHTML = 'Producto buscado: ' + producto.nombre;
     eNombre.innerHTML = 'Nombre: ' + producto.nombre;
     eCodigo.innerHTML = 'Codigo: ' + producto.codigo;
     eDescripcion.innerHTML = 'Descripcion: ' + producto.descripcion;
     eCantidad.innerHTML = 'Cantidad: ' + producto.cantidad;
     eCosto.innerHTML = 'Costo: ' + producto.costo;
+    }else{
+        alert('No se encontro el producto')
+    }
 })
 
 AgregarPrimero.addEventListener('click', () => {
